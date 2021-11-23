@@ -3,6 +3,7 @@ import React from "react";
 
 const ProductItem = () => {
   const router = useRouter();
+  console.log(router.query.name);
 
   return (
     <div>
