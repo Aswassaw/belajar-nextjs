@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Link from "next/link";
 import React from "react";
 
 const Home = () => {
@@ -11,6 +10,7 @@ const Home = () => {
 
       <button onClick={() => router.push("/users")}>Users</button>
       <button onClick={() => router.push("/posts")}>Posts</button>
+      <button onClick={() => router.push("/products")}>Products</button>
     </div>
   );
 };
