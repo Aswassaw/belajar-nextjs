@@ -1,7 +1,7 @@
 import React from "react";
 import UserList from "../components/UserList";
 
-const StaticGeneration = ({ users }) => {
+const Users = ({ users }) => {
   return (
     <div>
       <h1>List of Users</h1>
@@ -11,15 +11,15 @@ const StaticGeneration = ({ users }) => {
   );
 };
 
-export default StaticGeneration;
+export default Users;
 
 export async function getStaticProps() {
-  const users = await fetch("https://jsonplaceholder.typicode.com/users");
-  const data = await users.json();
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const users = await res.json();
 
   return {
     props: {
-      users: data,
+      users,
     },
   };
 }

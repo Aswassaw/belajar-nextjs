@@ -9,7 +9,8 @@ const Home = () => {
     <div>
       <h1>Home Page</h1>
 
-      <button onClick={() => router.push("/static")}>Static</button>
+      <button onClick={() => router.push("/users")}>Users</button>
+      <button onClick={() => router.push("/posts")}>Posts</button>
     </div>
   );
 };
