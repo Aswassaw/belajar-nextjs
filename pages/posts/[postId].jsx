@@ -1,7 +1,14 @@
+import { useRouter } from "next/router";
 import React from "react";
 import PostDetail from "../../components/PostDetail";
 
 const Post = ({ post }) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div>
       <h1>Post Detail</h1>
@@ -34,12 +41,9 @@ export async function getStaticPaths() {
       {
         params: { postId: "3" },
       },
-      {
-        params: { postId: "11" },
-      },
     ],
     // paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
@@ -47,6 +51,15 @@ export async function getStaticProps(context) {
   const { params } = context;
   const res = await fetch(`http://localhost:8000/posts/${params.postId}`);
   const post = await res.json();
+
+  // Jika post tidak ditemukan
+  if (!post.id) {
+    return {
+      notFound: true,
+    };
+  }
+
+  console.log(`Generating page for /posts/${params.postId}`);
 
   return {
     props: {
