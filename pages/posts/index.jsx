@@ -14,12 +14,12 @@ const Posts = ({ posts }) => {
 export default Posts;
 
 export async function getStaticProps() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const res = await fetch("http://localhost:8000/posts");
   const posts = await res.json();
 
   return {
     props: {
-      posts: posts.slice(0, 3),
+      posts: posts,
     },
   };
 }

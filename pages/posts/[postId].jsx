@@ -1,6 +1,7 @@
 import React from "react";
+import PostDetail from "../../components/PostDetail";
 
-const PostDetail = ({ post }) => {
+const Post = ({ post }) => {
   return (
     <div>
       <h1>Post Detail</h1>
@@ -10,13 +11,28 @@ const PostDetail = ({ post }) => {
   );
 };
 
-export default PostDetail;
+export default Post;
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      {
+        params: { postId: "1" },
+      },
+      {
+        params: { postId: "2" },
+      },
+      {
+        params: { postId: "3" },
+      },
+    ],
+    fallback: false,
+  };
+}
 
 export async function getStaticProps(context) {
   const { params } = context;
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${params.postId}`
-  );
+  const res = await fetch(`http://localhost:8000/posts/${params.postId}`);
   const post = await res.json();
 
   return {
