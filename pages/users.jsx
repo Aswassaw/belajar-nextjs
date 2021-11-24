@@ -6,20 +6,20 @@ const Users = ({ users }) => {
     <div>
       <h1>List of Users</h1>
 
-      <UserList users={users} />
+      {/* <UserList users={users} /> */}
     </div>
   );
 };
 
 export default Users;
 
-export async function getStaticProps() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users = await res.json();
+// export async function getStaticProps() {
+//   const res = await fetch("https://jsonplaceholder.typicode.com/users");
+//   const users = await res.json();
 
-  return {
-    props: {
-      users,
-    },
-  };
-}
+//   return {
+//     props: {
+//       users,
+//     },
+//   };
+// }

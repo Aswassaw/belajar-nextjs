@@ -14,18 +14,28 @@ const Post = ({ post }) => {
 export default Post;
 
 export async function getStaticPaths() {
+  const res = await fetch(`http://localhost:8000/posts`);
+  const posts = await res.json();
+
+  const paths = posts.map((post) => {
+    return {
+      params: { postId: `${post.id}` },
+    };
+  });
+
   return {
-    paths: [
-      {
-        params: { postId: "1" },
-      },
-      {
-        params: { postId: "2" },
-      },
-      {
-        params: { postId: "3" },
-      },
-    ],
+    // paths: [
+    //   {
+    //     params: { postId: "1" },
+    //   },
+    //   {
+    //     params: { postId: "2" },
+    //   },
+    //   {
+    //     params: { postId: "3" },
+    //   },
+    // ],
+    paths,
     fallback: false,
   };
 }
