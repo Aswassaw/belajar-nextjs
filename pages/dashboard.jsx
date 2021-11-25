@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useSWR from "swr";
+
+const fethcer = async () => {
+  const res = await fetch("http://localhost:8000/dashboard");
+  const data = await res.json();
+
+  return data;
+};
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({});
+  const { data, error } = useSWR("dashboard", fethcer);
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("http://localhost:8000/dashboard");
-      const data = await res.json();
-      setData(data);
+  if (error) {
+    return (
+      <div>
+        <h1>Error...</h1>
+      </div>
+    );
+  }
 
-      setLoading(false);
-    }
-
-    fetchData();
-  }, []);
-
-  if (loading) {
+  if (!data) {
     return (
       <div>
         <h1>Loading...</h1>
