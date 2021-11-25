@@ -1,20 +1,22 @@
 import React from "react";
 
 const NewListByCategory = ({ news, category }) => {
-  console.log(news);
+  // console.log(news);
 
   return (
     <div>
-      <h1>News By Category</h1>
+      <h1>News By Category: {category}</h1>
 
       {news.map((newItem) => {
-        return <div
-          key={newItem.id}
-          style={{ border: "1px solid black", margin: "5px", padding: "5px" }}
-        >
-          <h5 style={{ margin: 0 }}>{newItem.title}</h5>
-          <p style={{ margin: 0 }}>{newItem.description}</p>
-        </div>;
+        return (
+          <div
+            key={newItem.id}
+            style={{ border: "1px solid black", margin: "5px", padding: "5px" }}
+          >
+            <h5 style={{ margin: 0 }}>{newItem.title}</h5>
+            <p style={{ margin: 0 }}>{newItem.description}</p>
+          </div>
+        );
       })}
     </div>
   );
@@ -23,18 +25,22 @@ const NewListByCategory = ({ news, category }) => {
 export default NewListByCategory;
 
 export async function getServerSideProps(context) {
-  const { params } = context;
-  const { category } = params;
+  const { params, req, res, query } = context;
+  console.log(req.headers.cookie);
+  console.log(query);
+  res.setHeader("Set-Cookie", ['name="Andry Pebrianto"']);
 
-  const res = await fetch(`http://localhost:8000/news?category=${category}`);
-  const news = await res.json();
+  const response = await fetch(
+    `http://localhost:8000/news?category=${params.category}`
+  );
+  const news = await response.json();
 
-  console.log(news);
+  // console.log(news);
 
   return {
     props: {
       news,
-      category,
+      category: params.category,
     },
   };
 }
