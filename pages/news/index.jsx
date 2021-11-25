@@ -18,6 +18,8 @@ export async function getServerSideProps() {
   const res = await fetch("http://localhost:8000/news");
   const news = await res.json();
 
+  console.log("NewList");
+
   return {
     props: {
       news,

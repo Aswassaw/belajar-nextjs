@@ -26,8 +26,8 @@ export default NewListByCategory;
 
 export async function getServerSideProps(context) {
   const { params, req, res, query } = context;
-  console.log(req.headers.cookie);
-  console.log(query);
+  // console.log(req.headers.cookie);
+  // console.log(query);
   res.setHeader("Set-Cookie", ['name="Andry Pebrianto"']);
 
   const response = await fetch(
@@ -35,7 +35,7 @@ export async function getServerSideProps(context) {
   );
   const news = await response.json();
 
-  // console.log(news);
+  console.log("NewList By Category");
 
   return {
     props: {
