@@ -11,6 +11,7 @@ const Home = () => {
       <button onClick={() => router.push("/users")}>Users</button>
       <button onClick={() => router.push("/posts")}>Posts</button>
       <button onClick={() => router.push("/products")}>Products</button>
+      <button onClick={() => router.push("/news")}>News</button>
     </div>
   );
 };
