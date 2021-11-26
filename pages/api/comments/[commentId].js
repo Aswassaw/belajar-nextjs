@@ -9,6 +9,10 @@ export default async function handler(req, res) {
       (comment) => comment.id === parseInt(commentId)
     );
 
+    if (!comment) {
+      return res.status(404).json({});
+    }
+
     res.status(200).json(comment);
   }
 
