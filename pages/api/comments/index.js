@@ -11,6 +11,6 @@ export default function handler(req, res) {
     const text = req.body.text;
     comments.push({ id: new Date().getTime(), text });
 
-    res.status(200).json(comments);
+    res.status(201).json(comments);
   }
 }
