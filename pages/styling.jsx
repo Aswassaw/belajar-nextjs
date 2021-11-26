@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/Styling.module.css";
+import stylesScss from "../styles/Styling.module.scss";
 
 const Styling = () => {
   return (
@@ -14,6 +15,8 @@ const Styling = () => {
       <div className={styles.card} id='card'>
         Manusia Api
       </div>
+      {/* SCSS Module */}
+      <div className={stylesScss.bgOrange}>Manusia Air</div>
     </div>
   );
 };
