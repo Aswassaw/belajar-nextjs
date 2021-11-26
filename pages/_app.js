@@ -1,5 +1,12 @@
 import "../styles/globals.css";
 import Head from "next/head";
+import { ThemeProvider } from "styled-components";
+
+const theme = {
+  colors: {
+    primary: "#ddd",
+  },
+};
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -17,7 +24,9 @@ function MyApp({ Component, pageProps }) {
           crossorigin='anonymous'
         ></script>
       </Head>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }

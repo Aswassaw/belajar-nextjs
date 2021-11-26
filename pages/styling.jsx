@@ -1,6 +1,12 @@
 import React from "react";
 import styles from "../styles/Styling.module.css";
-import stylesScss from "../styles/Styling.module.scss";
+import scss from "../styles/Styling.module.scss";
+import styled from "styled-components";
+
+const Title = styled.h3`
+  font-size: 50px;
+  color: red;
+`;
 
 const Styling = () => {
   return (
@@ -16,7 +22,11 @@ const Styling = () => {
         Manusia Api
       </div>
       {/* SCSS Module */}
-      <div className={stylesScss.bgOrange}>Manusia Air</div>
+      <div className={scss.bgOrange}>Manusia Air</div>
+      {/* Styled Components */}
+      <Title>
+        Manusia Tanah
+      </Title>
     </div>
   );
 };
