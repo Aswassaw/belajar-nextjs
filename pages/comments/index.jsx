@@ -25,6 +25,15 @@ const Comments = () => {
     setComments(comments);
   };
 
+  const deleteComment = async (id) => {
+    const res = await fetch("/api/comments/" + id, {
+      method: "DELETE",
+    });
+
+    const comments = await res.json();
+    setComments(comments);
+  };
+
   return (
     <div>
       <h1>Comments Page</h1>
@@ -46,6 +55,7 @@ const Comments = () => {
       {comments.map((comment) => (
         <div key={comment.id}>
           <h2>{comment.text}</h2>
+          <button onClick={() => deleteComment(comment.id)}>Delete</button>
         </div>
       ))}
     </div>
