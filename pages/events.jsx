@@ -1,11 +1,19 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 const Events = ({ eventList }) => {
+  const [events, setEvents] = useState(eventList);
   const router = useRouter();
 
   const fetchClient = async (category) => {
-    router.push(`/events?category=${category}`);
+    const res = await fetch(
+      `http://localhost:8000/events?category=${category}`
+    );
+    const events = await res.json();
+    console.log(events);
+    setEvents(events);
+
+    router.push(`/events?category=${category}`, undefined, { shallow: true });
   };
 
   return (
@@ -19,7 +27,7 @@ const Events = ({ eventList }) => {
         <button onClick={() => router.push("/events")}>All</button>
       </div>
 
-      {eventList.map((event) => (
+      {events.map((event) => (
         <div
           key={event.id}
           style={{ border: "1px solid black", margin: "5px", padding: "5px" }}
@@ -44,6 +52,8 @@ export async function getServerSideProps(context) {
 
   const res = await fetch(`http://localhost:8000/events?${queryString}`);
   const eventList = await res.json();
+
+  console.log("getServerSideProps() dijalankan");
 
   return {
     props: {
