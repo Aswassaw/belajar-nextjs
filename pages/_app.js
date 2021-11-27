@@ -1,5 +1,8 @@
 import "../styles/globals.css";
+import "../styles/layout.css";
 import Head from "next/head";
+import Header from "../components/miscellaneous/Header";
+import Footer from "../components/miscellaneous/Footer";
 import { ThemeProvider } from "styled-components";
 
 const theme = {
@@ -9,6 +12,15 @@ const theme = {
 };
 
 function MyApp({ Component, pageProps }) {
+  // Jika di suatu component terdapat fungsi bernama getLayout
+  if (Component.getLayout) {
+    return Component.getLayout(
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -24,9 +36,11 @@ function MyApp({ Component, pageProps }) {
           crossorigin='anonymous'
         ></script>
       </Head>
+      <Header />
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
       </ThemeProvider>
+      <Footer />
     </>
   );
 }
