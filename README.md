@@ -1,1 +1,2 @@
-# Belajar NextJS dari awal.
+# Belajar NextJS
+Belajar NextJS dari awal.
